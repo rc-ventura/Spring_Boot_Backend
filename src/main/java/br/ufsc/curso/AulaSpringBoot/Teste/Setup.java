@@ -28,10 +28,7 @@ public class Setup implements CommandLineRunner {
     private ClienteRepository clienteRepository;  // posso colocar Autowired para uma injeção ou criar um construtor
     @Autowired
     private EnderecoRepository enderecoRepository;
-   // public Setup (ClienteRepository clienteRepository){
-    //    super();
-    //    this.clienteRepository = clienteRepository;
-  //  }
+   
     
     @Override
     public void run(String... args) throws Exception {
