@@ -27,5 +27,25 @@ public class EnderecoService {
     public Endereco findById (Long id){
         return enderecoRepository.findById(id).get();
     }
+
+    public Endereco save(Endereco end) {
+        return enderecoRepository.save(end);
+    }
+
+    public void delete(long id) {
+        enderecoRepository.deleteById(id);
+    }
+
+    public Endereco update(Long id, Endereco end) {
+        Endereco enderecoEntity = enderecoRepository.getReferenceById(id);
+        enderecoEntity.setTipo(end.getTipo());
+        enderecoEntity.setRua(end.getRua());
+        enderecoEntity.setNumero(end.getNumero());
+        enderecoEntity.setCep(end.getCep());
+        return enderecoRepository.save(end);
+        
+    }
     
 }
+
+    
