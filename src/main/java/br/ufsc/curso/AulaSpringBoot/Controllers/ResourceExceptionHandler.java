@@ -5,6 +5,7 @@
 package br.ufsc.curso.AulaSpringBoot.Controllers;
 
 import javax.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +29,12 @@ public class ResourceExceptionHandler {
     public ResponseEntity<String> emptyResultDataAccessException(EmptyResultDataAccessException e ) {
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body( e.getMessage());
     }
+
+     @ExceptionHandler(value = DataIntegrityViolationException.class)
+     public ResponseEntity<String> dataIntegrityViolationException(DataIntegrityViolationException e ) {
+        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body( e.getMessage());
+    
 }
+     
+}
+
