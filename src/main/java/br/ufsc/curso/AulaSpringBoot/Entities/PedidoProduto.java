@@ -58,6 +58,9 @@ public class PedidoProduto implements Serializable {
             this.produto = produto;
         }
 
+        
+        
+        
         @Override
         public int hashCode() {
             int hash = 5;
@@ -125,6 +128,11 @@ public class PedidoProduto implements Serializable {
         this.preco = preco;
     }
 
+    public Double getSubTotal(){
+        return this.preco * this.quantidade;
+    
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
