@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package br.ufsc.curso.AulaSpringBoot.Controllers;
 
+
 import br.ufsc.curso.AulaSpringBoot.Entities.Pedido;
-import br.ufsc.curso.AulaSpringBoot.Services.PedidoService;
+import br.ufsc.curso.AulaSpringBoot.services.PedidoService;
 import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +58,7 @@ public class PedidoController {
     
     @DeleteMapping(value = "/pedidos/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        pedidoService.delete(id);
+        pedidoService.deleteById(id);
         return ResponseEntity.noContent().build();
         
     }
