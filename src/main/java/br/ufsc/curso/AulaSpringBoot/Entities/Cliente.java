@@ -6,10 +6,13 @@ package br.ufsc.curso.AulaSpringBoot.Entities;
 
 import java.util.Objects;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,6 +34,9 @@ public class Cliente implements Serializable {
     private String email;
     private String fone;
     private String senha;
+    
+    @OneToMany(mappedBy = "cliente")
+    private List <Endereco> enderecos = new ArrayList<>(); 
     
     //contrutores 
     
@@ -85,6 +91,10 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
