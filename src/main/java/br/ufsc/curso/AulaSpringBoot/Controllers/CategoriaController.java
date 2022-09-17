@@ -25,51 +25,41 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 public class CategoriaController {
-    
+
     @Autowired
     private CategoriaService categoriaService;
-    
-    
+
     @GetMapping(value = "/categorias")
-    public ResponseEntity<List<Categoria>> findAll(){
-       List<Categoria> categorias = categoriaService.findAll();
-       return ResponseEntity.ok().body(categorias);
+    public ResponseEntity<List<Categoria>> findAll() {
+        List<Categoria> categorias = categoriaService.findAll();
+        return ResponseEntity.ok().body(categorias);
     }
-    
+
     @GetMapping(value = "/categorias/{id}")
-    public ResponseEntity<Categoria> findById(Long id){
+    public ResponseEntity<Categoria> findById(Long id) {
         Categoria categorias = categoriaService.findById(id);
         return ResponseEntity.ok().body(categorias);
     }
-    
+
     @PostMapping(value = "/categorias")
-    public ResponseEntity<Categoria> save (@RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> save(@RequestBody Categoria categoria) {
         Categoria savedCategoria = categoriaService.save(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/categorias/{id}")
-        .buildAndExpand(savedCategoria.getId()).toUri();
+                .buildAndExpand(savedCategoria.getId()).toUri();
         return ResponseEntity.created(uri).body(savedCategoria);
-    
+
     }
 
-    
     @DeleteMapping(value = "/categorias/{id}")
-    public ResponseEntity<Void> delete (@PathVariable Long id){
-         categoriaService.delete(id);
-         return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        categoriaService.delete(id);
+        return ResponseEntity.noContent().build();
     }
- 
+
     @PutMapping(value = "categorias/{id}")
-    public ResponseEntity<Categoria> update (@PathVariable Long id, @RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria categoria) {
         categoria = categoriaService.update(id, categoria);
         return ResponseEntity.ok().body(categoria);
     }
-    
-    
+
 }
-    
-
-    
-    
-
-
-    
