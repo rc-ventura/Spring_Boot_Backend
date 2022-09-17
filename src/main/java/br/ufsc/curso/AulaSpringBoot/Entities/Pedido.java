@@ -75,8 +75,20 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
+    public Set<PedidoProduto> getProdutos() {
+        return produtos;
+    }
+
+    public Double getTotalPedido(){
+        Double total = 0d;
+        for (PedidoProduto p: produtos){
+             total = total + p.getSubTotal();
+        } return total;
+        
+    }
     
-    
+
+     
     @Override
     public int hashCode() {
         int hash = 3;
