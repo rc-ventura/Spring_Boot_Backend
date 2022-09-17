@@ -5,7 +5,9 @@
 package br.ufsc.curso.AulaSpringBoot.Services;
 
 import br.ufsc.curso.AulaSpringBoot.Entities.Cliente;
+import br.ufsc.curso.AulaSpringBoot.Entities.Endereco;
 import br.ufsc.curso.AulaSpringBoot.Repositories.ClienteRepository;
+import br.ufsc.curso.AulaSpringBoot.Repositories.EnderecoRepository;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.persistence.EntityNotFoundException;
@@ -21,6 +23,10 @@ public class ClienteService {
     
     @Autowired
     private ClienteRepository clienteRepository;
+    
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+    
     
     public List <Cliente> findAll(){
         return clienteRepository.findAll();
@@ -40,8 +46,12 @@ public class ClienteService {
     }
     
     public void delete (Long id){
+       // try {
         clienteRepository.deleteById(id);
-    }
+    } //  catch (RuntimeException e){
+      //  e.printStackTrace();
+    
+     
     
     public Cliente update (Long id, Cliente cliente){
         Cliente clienteEntity = clienteRepository.getReferenceById(id);
@@ -50,11 +60,29 @@ public class ClienteService {
         clienteEntity.setFone(cliente.getFone());
         clienteEntity.setSenha(cliente.getSenha());
         return clienteRepository.save(clienteEntity);
+}
+    
+   public Cliente addEndereco ( Long idCliente, Long idEndereco){
+       Cliente cliente = clienteRepository.findById(idCliente).get();
+       Endereco endereco = enderecoRepository.findById(idCliente).get();
+       
+       endereco.setCliente(cliente);
+       enderecoRepository.save(endereco);
+       return cliente;
+   }
+ 
+   public Cliente removeEndereco ( Long idCliente, Long idEndereco){
+       Cliente cliente = clienteRepository.findById(idCliente).get();
+       Endereco endereco = enderecoRepository.findById(idCliente).get();
+       
+       endereco.setCliente(null);
+       enderecoRepository.save(endereco);
+       return cliente;
+}
+      
+}
 
-     
-        }
-    }
-        
+
         
         
     
