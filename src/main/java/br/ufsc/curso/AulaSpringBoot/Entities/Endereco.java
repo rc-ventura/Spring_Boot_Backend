@@ -4,12 +4,15 @@
  */
 package br.ufsc.curso.AulaSpringBoot.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -33,17 +36,22 @@ public class Endereco implements Serializable{
     private String numero;
     private String cep;
     
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
     
 //construtores    
     
     public Endereco () {}
 
-    public Endereco(Long id, String tipo, String rua, String numero, String cep) {
+    public Endereco(Long id, String tipo, String rua, String numero, String cep, Cliente cliente) {
         this.id = id;
         this.tipo = tipo;
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
+        this.cliente = cliente;
     }
 
     public Long getId() {
@@ -84,6 +92,14 @@ public class Endereco implements Serializable{
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
