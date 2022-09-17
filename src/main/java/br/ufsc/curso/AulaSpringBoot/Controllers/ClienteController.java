@@ -5,7 +5,7 @@
 package br.ufsc.curso.AulaSpringBoot.Controllers;
 
 import br.ufsc.curso.AulaSpringBoot.Entities.Cliente;
-import br.ufsc.curso.AulaSpringBoot.Services.ClienteService;
+import br.ufsc.curso.AulaSpringBoot.services.ClienteService;
 import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +57,7 @@ public class ClienteController {
     
     @DeleteMapping(value = "/clientes/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        clienteService.delete(id);
+        clienteService.deleteById(id);
         return ResponseEntity.noContent().build();
         
     }
