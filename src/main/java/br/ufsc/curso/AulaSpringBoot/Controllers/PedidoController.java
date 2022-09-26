@@ -41,7 +41,14 @@ public class PedidoController {
         return ResponseEntity.ok().body(pedido);
 
     }
-
+        //POST pedido completo 
+     @PostMapping(value = "/pedidos/insertFull")
+    public ResponseEntity<Pedido> saveFull(@RequestBody Pedido pedido) {
+        Pedido savedPedido = pedidoService.save(pedido);
+        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/pedidos/{id}").buildAndExpand(savedPedido.getId()).toUri();
+        return ResponseEntity.created(uri).body(savedPedido);
+    }
+    
     @PostMapping(value = "/pedidos")
     public ResponseEntity<Pedido> save(@RequestBody Pedido pedido) {
         Pedido savedPedido = pedidoService.save(pedido);

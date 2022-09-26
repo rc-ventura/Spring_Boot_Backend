@@ -50,6 +50,13 @@ public class ProdutoController {
         return ResponseEntity.created(uri).body(savedProduto);
     
     }
+        //POST uma lista
+    @PostMapping(value = "/produtos/insertMany")
+    public ResponseEntity <List<Produto>> saveMany (@RequestBody List <Produto> produtos){
+       List <Produto> savedProdutos = produtoService.saveMany(produtos);
+        return ResponseEntity.ok().body(savedProdutos);
+
+    }
 
     
     @DeleteMapping(value = "/produtos/{id}")

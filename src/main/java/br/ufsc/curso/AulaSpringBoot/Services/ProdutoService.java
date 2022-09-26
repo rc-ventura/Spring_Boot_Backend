@@ -5,9 +5,11 @@
 package br.ufsc.curso.AulaSpringBoot.Services;
 
 import br.ufsc.curso.AulaSpringBoot.Entities.Categoria;
+import br.ufsc.curso.AulaSpringBoot.Entities.Pedido;
 import br.ufsc.curso.AulaSpringBoot.Entities.Produto;
 import br.ufsc.curso.AulaSpringBoot.Repositories.CategoriaRepository;
 import br.ufsc.curso.AulaSpringBoot.Repositories.ProdutoRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.persistence.EntityNotFoundException;
@@ -46,6 +48,19 @@ public class ProdutoService {
     public Produto save (Produto produto){
         return produtoRepository.save(produto);
     }
+    
+    
+    public List <Produto> saveMany (List <Produto> produtos){
+        
+      //  List<Produto> savedProdutos = new ArrayList<>();       // Posso salvar uma lista de produtos utilizando um for OU
+        //for(Produto p: produtos){
+          //  savedProdutos.add(produtoRepository.save(p));
+       // }return savedProdutos;
+       
+       return produtoRepository.saveAll(produtos);
+        
+    }
+    
     
     
     public void delete (Long id){

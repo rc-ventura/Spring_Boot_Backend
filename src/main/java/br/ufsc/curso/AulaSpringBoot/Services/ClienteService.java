@@ -19,6 +19,7 @@ public class ClienteService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    
     public Cliente addEndereco(Long idCliente, Long idEndereco) {
         Cliente cliente = clienteRepository.findById(idCliente).get();
         Endereco endereco = enderecoRepository.findById(idEndereco).get();
@@ -74,5 +75,13 @@ public class ClienteService {
             throw new EntityNotFoundException("EntityNotFoundException Cliente id: " + id);
         }
     }
-
+    
+    //consulta SQL personalizada
+    public List<Cliente> findNoBuy() {
+        return clienteRepository.findNoBuy();
+    }   
+    
+    public List<Cliente> findByNameFilter(String filter) {
+        return clienteRepository.findByNameFilter(filter);
+    }   
 }

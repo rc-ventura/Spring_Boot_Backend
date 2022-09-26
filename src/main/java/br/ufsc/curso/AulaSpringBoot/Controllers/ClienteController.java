@@ -21,21 +21,40 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /**
  *
- * @author RC_Ve
+ * @author RC_Ventura
  */
 @RestController
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+    
 
     @GetMapping(value = "/clientes")
     public ResponseEntity<List<Cliente>> findAll() {
 
         List<Cliente> clientes = clienteService.findAll();
         return ResponseEntity.ok().body(clientes);
+        
     }
+     //consultaSQL personalizada <Clientes que não possuem pedidos>
+    @GetMapping(value = "/clientes/noBuy")
+    public ResponseEntity<List<Cliente>> finNoBuy() {
 
+        List<Cliente> clientes = clienteService.findNoBuy();
+        return ResponseEntity.ok().body(clientes);
+        
+    }
+    
+     //consultaSQL personalizada <Buscar cliente por nome passando um parametro de busca>
+    @GetMapping(value = "/clientes/nameFilter/{filter}")
+    public ResponseEntity<List<Cliente>> finByNameFilter(@PathVariable String filter) {
+
+        List<Cliente> clientes = clienteService.findByNameFilter(filter);
+        return ResponseEntity.ok().body(clientes);
+        
+    }
+    
     @GetMapping(value = "/clientes/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Long id) {
         Cliente cliente = clienteService.findById(id);
@@ -46,7 +65,8 @@ public class ClienteController {
     @PostMapping(value = "/clientes")
     public ResponseEntity<Cliente> save(@RequestBody Cliente cliente) {
         Cliente savedCliente = clienteService.save(cliente);
-        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/clientes/{id}").buildAndExpand(savedCliente.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+       .path("/clientes/{id}").buildAndExpand(savedCliente.getId()).toUri();
         return ResponseEntity.created(uri).body(savedCliente);
     }
 

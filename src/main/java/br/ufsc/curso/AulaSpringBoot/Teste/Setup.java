@@ -48,8 +48,9 @@ public class Setup implements CommandLineRunner {
         Cliente c1 = new Cliente(null, "João da Silva", "joao@gmail.com", "99999999999", "123mudar");
         Cliente c2 = new Cliente(null, "Maria dos Santos", "maria@m.com", "88888888888", "123mudar");
         Cliente c3 = new Cliente(null, "Ana Paula Ferreira", "ana@gmail.com", "77777777777", "123mudar");
+        Cliente c4 = new Cliente(null, "Rafael Ferreira", "rafael@gmail.com", "666666666", "123mudar");
 
-        clienteRepository.saveAll(Arrays.asList(c1, c2, c3));
+        clienteRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
 
         Endereco e1 = new Endereco(null, "casa", "Rua das Palmeiras", "333", "89.001-001", c1);
         Endereco e2 = new Endereco(null, "trabalho", "Rua dos Coqueiros", "222", "89.222-001", c1);
