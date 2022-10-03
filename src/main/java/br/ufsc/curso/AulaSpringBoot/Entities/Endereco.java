@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package br.ufsc.curso.AulaSpringBoot.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author RC_Ve
+ * @author RC_Ventura 
  */
 @Entity
 public class Endereco implements Serializable{

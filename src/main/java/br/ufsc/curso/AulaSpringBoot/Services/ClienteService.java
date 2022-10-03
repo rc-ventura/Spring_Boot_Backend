@@ -2,6 +2,7 @@ package br.ufsc.curso.AulaSpringBoot.services;
 
 import br.ufsc.curso.AulaSpringBoot.Entities.Cliente;
 import br.ufsc.curso.AulaSpringBoot.Entities.Endereco;
+import br.ufsc.curso.AulaSpringBoot.Exceptions.ObjetoNaoEncontradoException;
 import br.ufsc.curso.AulaSpringBoot.Repositories.ClienteRepository;
 import br.ufsc.curso.AulaSpringBoot.Repositories.EnderecoRepository;
 import java.util.List;
@@ -72,8 +73,8 @@ public class ClienteService {
         try {
             return clienteRepository.findById(id).get();
         } catch (NoSuchElementException e) {
-            throw new EntityNotFoundException("EntityNotFoundException Cliente id: " + id);
-        }
+            throw new ObjetoNaoEncontradoException("Cliente" + id);
+        } // Vamos chamar uma exceção personalizada
     }
     
     //consulta SQL personalizada
